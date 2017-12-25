@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+     <title>File Metadata Microservice</title>
+     <meta charset="utf-8">      
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+     <link href="/public/css/style.css" rel="stylesheet" type="text/css">
+     <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
+   </head>
+
+   <body>
+      <div class="container">
+        <div class="well">
+         <h1>File Metadata Microservice</h1>
+          <hr>
+          <h2>
+            Submit a file to view its file size in bytes
+          </h2>
+          
+          <form id="myForm" enctype="multipart/form-data" action="/get-file-size" method="post">
+          <p>
+        <label for="i2">file data:</label>
+        <input id="i2" name="myFile" type="file" required>
+          </p>
+          <input type="submit" value="Upload">
+          </form>
+      
+          </div> <!-- well -->
+        <footer>
+          <p>Github Repo <a href="https://github.com/maribelduran/file-metadata-microservice" target="_blank">
+          <span class="fa fa-github"></span>
+        </a></p>
+          <p>
+            Built by <a href="http://www.maribelduran.com/" target="_blank">Maribel Duran</a>
+          </p>
+          </footer>
+      </div> <!-- container -->
+   </body>
+
+</html>
