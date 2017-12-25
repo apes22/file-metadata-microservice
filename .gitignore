@@ -58,4 +58,4 @@ typings/
 .env
 
 #upload file
-public/uploads
+public/uploads/
