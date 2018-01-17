@@ -7,7 +7,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
      <link href="/public/css/style.css" rel="stylesheet" type="text/css">
-     <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
+      <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
    </head>
 
    <body>
@@ -16,17 +16,14 @@
          <h1>File Metadata Microservice</h1>
           <hr>
           <h2>
-            Submit a file to view its file size in bytes
-          </h2>
-          
-          <form id="myForm" enctype="multipart/form-data" action="/get-file-size" method="post">
-          <p>
-        <label for="i2">file data:</label>
-        <input id="i2" name="myFile" type="file" required>
-          </p>
-          <input type="submit" value="Upload">
-          </form>
-      
+            Upload a file to view its file size in bytes
+          </h2>  
+          <form id="myForm" enctype="multipart/form-data" action="/get-file-size" method="post" >
+            <div id="dropzone" class="droppable">Drop your file here or click to browse
+              <div id="preview"></div>
+            </div>
+          <input type="submit" value="Upload" class="uploadButton">
+          </form> 
           </div> <!-- well -->
         <footer>
           <p>Github Repo <a href="https://github.com/maribelduran/file-metadata-microservice" target="_blank">
@@ -37,6 +34,7 @@
           </p>
           </footer>
       </div> <!-- container -->
+      <script src="/public/js/index.js"></script>
    </body>
 
 </html>
