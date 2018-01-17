@@ -12,23 +12,13 @@ const upload = multer({dest: './public/uploads/',
 /* http://www.dropzonejs.com/#installation */
 router.route('/get-file-size/')
 // req.body will hold the text fields, if there were any 
-.post( upload.single('myFile'), function (req, res, next) {
+.post( upload.single('file'), function (req, res, next) {
   // req.file is the `avatar` file 
   let fileInfo = {
     "file_name": req.file.originalname,
     "file_size": `${req.file.size} bytes`
   };
   res.json(fileInfo);
-  
 })
-
-
-router.route('/get-file-size/')
-.post((req, res) => {
-  const response = "File submitted!";
-//  const response = { error: "The shortened url is in the wrong format. Verify that passed shortened URL is a digit value." };
-    res.json(response);
-});
-
 
 module.exports = router;
