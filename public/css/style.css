@@ -19,6 +19,7 @@ body {
   width: 70%;
   border-style: solid;
   padding: 10px;
+  word-wrap: break-word;
 }
 
 code {
@@ -65,4 +66,22 @@ img {
 .fa{
  font-size: 22px !important;
 
+}
+
+.droppable { background: #08c; color: #fff; padding: 100px 0; text-align: center; }
+
+.droppable.dragover { background: #00CC71; }
+
+.preview{
+  height: 200px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.hidden{
+  display: none;
+}
+
+.uploadButton{
+  width: 100%;
 }
