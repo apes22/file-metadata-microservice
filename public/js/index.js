@@ -1,122 +1,87 @@
-/* http://bitwiser.in/2015/08/08/creating-dropzone-for-drag-drop-file.html*/
-const allowMultipleFiles = false;
-let fileToUpload;
+let fileToUpload = null;
 
-function makeDroppable(element, callback) {
-  var input = document.createElement('input');
-  input.setAttribute('type', 'file');
-  if (allowMultipleFiles){ input.setAttribute('multiple', true);}
-  //input.name = 'file'; //necessary for backend file upload processing
-  input.style.display = 'none';
+let controller = {
+  uploadFile: (file) => {
+    let headers = new Headers();
+    // Tell the server we want JSON back
+    headers.set('Accept', 'application/json');
+    const formData = new FormData();
+    formData.append("file", fileToUpload);
 
-  input.addEventListener('change', triggerCallback);
-  element.appendChild(input);
-  
-  element.addEventListener('dragover', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    element.classList.add('dragover');
-  });
-
-  element.addEventListener('dragleave', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    element.classList.remove('dragover');
-  });
-
-  element.addEventListener('drop', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    element.classList.remove('dragover');
-    triggerCallback(e);
-  });
-  
-  element.addEventListener('click', function() {
-    input.value = null;
-    input.click();
-  });
-
-  function triggerCallback(e) {
-    let files;
-    if(e.dataTransfer) {
-      files = e.dataTransfer.files;
-    } else if(e.target) {
-      files = e.target.files;
-    }
-    callback.call(null, files);
-  }
-}
-function callback(files) {
-  if (files){
-   previewFiles(files);
-  }
-}
-
-function previewFiles(files){
-  var preview = document.querySelector('#preview');
-  preview.innerHTML = ""; 
-
-  function readAndPreview(file) {
-    var reader = new FileReader();
-    reader.addEventListener("load", function () {
-      if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
-        var image = new Image();
-        image.height = 100;
-        image.title = file.name;
-        image.src = this.result;
-        preview.appendChild(image);
-      }
-      else{
-        //add a file icon to preview
-      }  
-    }, false);
-    reader.readAsDataURL(file);
-    fileToUpload = file;
-  }
-
-  if(files) {
-  const fileArray = Array.from(files);
-   fileArray.forEach(readAndPreview);
-  }
-}
-
-// Access the form element...
-var form = document.getElementById("myForm");
-  // ...and take over its submit event.
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    if (fileToUpload){
-      var headers = new Headers();
-      // Tell the server we want JSON back
-      headers.set('Accept', 'application/json');
-      var formData = new FormData();
-      formData.append("file", fileToUpload);
-
-      //Make the request
-      var url = '/get-file-size/';
-      var fetchOptions = {
+    //Make the request
+    const url = '/get-file-size/';
+    const fetchOptions = {
         method: 'POST',
         headers,
         body: formData
       };
       
-      var responsePromise = fetch(url, fetchOptions);
+    const responsePromise = fetch(url, fetchOptions);
   
     //Use the response
     responsePromise
   	//Convert the response into JSON-JS object.
     .then(function(response) {
+      console.log(response)
       return response.json();
     })
     //Do something with the JSON data
     .then(function(jsonData) {
     	console.log(jsonData);
+    })
+    //Fetch only enters the catch statement when there is a network error. Even if we receive a failed rspone, it will enter the then statement.
+     .catch({ function(){
+       console.log("Something went wrong!");
+   }  
+   });
+  }
+};
+
+let view = {
+  setUpEventListeners: function (){
+    const droppableElement = document.querySelector('.droppable');
+    //Adds eventListeners to the droppable element
+    makeDroppable(droppableElement, this.previewFiles);
+    
+    const uploadForm = document.getElementById("uploadForm");
+    uploadForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (fileToUpload){
+        controller.uploadFile(fileToUpload);
+      } else{ 
+        alert ("Please select a file to upload")
+      }
     });
+  }, 
+  previewFiles: function (files) {
+    if (files){
+      let preview = document.querySelector('#preview');
+      preview.innerHTML = ""; 
+      
+      const fileArray = Array.from(files);
+      fileArray.forEach(function(file){
+        let reader = new FileReader();
+        reader.addEventListener("load", function() {
+          if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+            const previewImg = view.createPreviewImg(file, this.result);
+            preview.appendChild(previewImg);
+          }
+          else{
+            //add a file icon to preview
+          }  
+        }, false);
+        reader.readAsDataURL(file);
+        fileToUpload = file;
+      });
     }
-    else{ 
-      alert ("Please select a file to upload")
-    }
-  });
-         
-const element = document.querySelector('.droppable');
-makeDroppable(element, callback);
+  },
+  createPreviewImg: function (file, data){
+    let image = new Image();
+    image.height = 100;
+    image.title = file.name;
+    image.src = data;
+    return image;
+  } 
+};
+
+view.setUpEventListeners();
