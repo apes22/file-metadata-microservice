@@ -56,10 +56,7 @@ a:hover{
 
 /****** Logo Div Styling ******/
 
-img {
-	margin: 20px auto 0 auto;
-	display: block;
-}
+
 
 /****** FontAwesome Styling ******/
 
@@ -68,20 +65,37 @@ img {
 
 }
 
-.droppable { background: #08c; color: #fff; padding: 100px 0; text-align: center; }
+/****** Dropzone Styling ******/
+form{
+  border: 2px dashed #08c;
+}
 
-.droppable.dragover { background: #00CC71; }
+.droppable { 
+  background: #08c; 
+  color: #fff; 
+  padding: 100px 0; 
+  text-align: center; 
+  cursor: pointer;
+}
+
+.droppable.dragover { 
+  background: #00CC71; 
+}
 
 .preview{
-  height: 200px;
+  position: relative;
+  height: 150px;
   border-radius: 5px;
   overflow: hidden;
 }
-
-.hidden{
-  display: none;
+ 
+.previewImg{
+  height: 80px;
+  margin: auto;
+  display: block;
 }
 
 .uploadButton{
   width: 100%;
+  cursor: pointer;
 }

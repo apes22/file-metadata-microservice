@@ -27,7 +27,9 @@ let controller = {
     })
     //Do something with the JSON data
     .then(function(jsonData) {
-    	console.log(jsonData);
+      let preview = document.querySelector('#preview');
+      preview.innerHTML = `<p>File size: ${jsonData.file_size} </p>`;
+    	//console.log(jsonData);
     })
     //Fetch only enters the catch statement when there is a network error. Even if we receive a failed rspone, it will enter the then statement.
      .catch({ function(){
@@ -62,12 +64,15 @@ let view = {
       fileArray.forEach(function(file){
         let reader = new FileReader();
         reader.addEventListener("load", function() {
+          ////add image preview
           if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
-            const previewImg = view.createPreviewImg(file, this.result);
-            preview.appendChild(previewImg);
+            const previewImg = view.previewImg(file, this.result);
+            preview.innerHTML = previewImg;
           }
           else{
-            //add a file icon to preview
+             //add a file icon to preview
+            const previewFile = view.previewFile(file);
+            preview.innerHTML = previewFile; 
           }  
         }, false);
         reader.readAsDataURL(file);
@@ -75,13 +80,24 @@ let view = {
       });
     }
   },
-  createPreviewImg: function (file, data){
-    let image = new Image();
-    image.height = 100;
-    image.title = file.name;
-    image.src = data;
-    return image;
-  } 
+  previewImg: function (file, data){
+    return `
+    <img class="previewImg" title=${file.name} src=${data}><span>${file.name}</span>
+    </img>
+    `
+  },
+  previewFile: function(file){
+    return `<div>
+    <i class="fa fa-file fa-2x"> <span>${file.name}</span></i>
+   
+    </div>`;
+  },
+  showLoader: function(){
+    return `<div>
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    <span class="sr-only">File Icon/span>
+    </div>`;
+  }
 };
 
 view.setUpEventListeners();
