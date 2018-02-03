@@ -17,9 +17,9 @@
           <h2>
             Upload a file to view its file size in bytes
           </h2> 
-          <form id="uploadForm">
-            <div id="dropzone" class="droppable">Drop your file here or click to browse
-              <div id="preview"></div>
+          <form id="uploadForm" enctype="multipart/form-data" action="/get-file-size" method="post">
+            <div id="dropzone" class="droppable">
+              <div id="preview">Drop your file here or click to browse</div>
             </div>
           <input type="submit" value="Upload" class="uploadButton">
           </form> 
