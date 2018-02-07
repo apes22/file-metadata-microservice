@@ -15,7 +15,7 @@ let controller = {
         headers,
         body: formData
       };
-      
+    view.showLoader();  
     const responsePromise = fetch(url, fetchOptions);
   
     //Use the response
@@ -23,8 +23,10 @@ let controller = {
   	//Convert the response into JSON object.
     .then(function(response) {
       return response.json();
+
     })
     .then(function(jsonData) {
+
       if (jsonData.file_size){
         view.showFileSize(jsonData.file_size);
         view.showStatus("success");
@@ -99,13 +101,11 @@ let view = {
     </div>`;
   },
   showLoader: function(){
-    return `<div>
-    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-    <span class="sr-only">File Icon/span>
-    </div>`;
-  },
-  showFileSize: function(fileSize){
-    return `<p>File size: ${fileSize} </p>`;
+    let preview = document.querySelector('#preview');
+    preview.innerHTML =  `<div>
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+      <span class="sr-only">File Icon/span>
+      </div>`;
   },
   showStatus(status){
     let button =  document.getElementById("uploadButton")
