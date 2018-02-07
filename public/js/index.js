@@ -22,11 +22,14 @@ let controller = {
     responsePromise
   	//Convert the response into JSON object.
     .then(function(response) {
-      return response.json();
-
+      if (response.ok){
+        return response.json();
+      }
+      else{
+        return response.ok;
+      }
     })
     .then(function(jsonData) {
-
       if (jsonData.file_size){
         view.showFileSize(jsonData.file_size);
         view.showStatus("success");
