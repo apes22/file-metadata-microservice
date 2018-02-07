@@ -4,7 +4,7 @@ body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
 	color: #222;
-	text-align: center;
+  text-align: center;
 }
 
 .container {
@@ -22,80 +22,88 @@ body {
   word-wrap: break-word;
 }
 
-code {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #c7254e;
-    background-color: #f9f2f4;
-    border-radius: 4px;
-}
-
 footer {
 	margin-top: 20px;
   text-align: center;
 }
 
-ol {
-	list-style-position: inside;
-}
-ul {
-	list-style-type: none;
-}
-
 a {
 	color: #2574A9;
-  text-decoration: none;
-   
+  text-decoration: none;  
 }
 
 a:hover{
   color: #000;
- 
 }
-
-
-/****** Logo Div Styling ******/
-
-
 
 /****** FontAwesome Styling ******/
 
 .fa{
  font-size: 22px !important;
-
+}
+.fa-file{
+  font-size: 16px !important;
 }
 
 /****** Dropzone Styling ******/
 form{
-  border: 2px dashed #08c;
+  border: 2px dashed #419CF5;
 }
 
 .droppable { 
-  background: #08c; 
-  color: #fff; 
-  padding: 100px 0; 
+  color: #606060; 
+  background: #FDFDFD; 
+  padding: 80px 0; 
   text-align: center; 
   cursor: pointer;
 }
 
 .droppable.dragover { 
-  background: #00CC71; 
+  background: #D5E6F7; 
 }
 
 .preview{
   position: relative;
-  height: 150px;
-  border-radius: 5px;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+}
+
+figure{
+  position: relative;
+  height: inherit;
 }
  
 .previewImg{
-  height: 80px;
-  margin: auto;
+  height: inherit;
   display: block;
 }
 
 .uploadButton{
   width: 100%;
   cursor: pointer;
+  color: #E8E8E8;
+  background-color:#419CF5;
+  padding: 12px  !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 0px !important;
+}
+
+.uploadButton:hover{
+  opacity: 0.8;
+}
+
+.uploadButton:focus {outline:0;}
+
+.success{
+  background-color: #00CC71; 
+  border-color: #00CC71; 
+  pointer-events: none;
+ 
+}
+
+.disable-clicks{
+  pointer-events: none;
 }
