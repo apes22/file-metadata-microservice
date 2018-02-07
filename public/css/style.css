@@ -100,8 +100,11 @@ figure{
 .success{
   background-color: #00CC71; 
   border-color: #00CC71; 
-  pointer-events: none;
- 
+}
+
+.failed{
+  background-color: red; 
+  border-color: red;
 }
 
 .disable-clicks{
