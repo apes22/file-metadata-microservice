@@ -15,13 +15,13 @@
          <h1>File Metadata Microservice</h1>
           <hr>
           <h2>
-            Upload a file to view its file size in bytes
+            Upload a single file to view its file size in bytes
           </h2> 
           <form id="uploadForm" enctype="multipart/form-data" action="/get-file-size" method="post">
             <div id="dropzone" class="droppable">
-              <div id="preview">Drop your file here or click to browse</div>
+              <div id="preview" class="preview">Drop your file here or click to browse (max 1000KB)</div>
             </div>
-          <input type="submit" value="Upload" class="uploadButton">
+          <input type="submit" value="Upload" id="uploadButton" class="uploadButton">
           </form> 
           </div> <!-- well -->
         <footer>
