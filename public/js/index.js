@@ -26,8 +26,7 @@ let controller = {
     })
     .then(function(jsonData) {
       if (jsonData.file_size){
-        let preview = document.querySelector('#preview');
-        preview.innerHTML = view.showFileSize(jsonData.file_size);
+        view.showFileSize(jsonData.file_size);
         view.showStatus("success");
       }
       else{
@@ -115,8 +114,7 @@ let view = {
       button.value = "SUCCESS"
       button.classList.add("success");
       form.classList.add("success");
-      form.classList.add("disable-clicks");
-
+      form.classList.add("disable-clicks");x
     }
     else if(status == "failed"){
       button.value = "FAILED";
@@ -124,6 +122,10 @@ let view = {
       form.classList.add("failed");
       form.classList.add("disable-clicks");
     }   
+  },
+  showFileSize(fileSize){
+    let preview = document.querySelector('#preview');
+    preview.innerHTML = `File Size: ${fileSize}`;
   },
   showError(message){
     let preview = document.querySelector('#preview');
