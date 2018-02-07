@@ -114,7 +114,7 @@ let view = {
       button.value = "SUCCESS"
       button.classList.add("success");
       form.classList.add("success");
-      form.classList.add("disable-clicks");x
+      form.classList.add("disable-clicks");
     }
     else if(status == "failed"){
       button.value = "FAILED";
