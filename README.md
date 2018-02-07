@@ -8,9 +8,7 @@ A Full Stack Javascript application built using [Node.js](https://nodejs.org/), 
 An API Project for FreeCodeCamp.
 
 ## Example Usage
-
-The service creates a POST request to the '/get-file-size/' endpoint to upload a single file.
-
+You can drag or select a file from your computer and preview the file to upload. Once you click the upload button, the POST request is sent to the '/get-file-size/' API endpoint.
 
 ## Example Output
 
