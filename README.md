@@ -1,6 +1,6 @@
 # File Metadata Microservice :file_folder:
 
-This service accepts a file upload with a size limit of 1000KB. Once uploaded, it will return the file size in bytes in the JSON response. Note: This service is removing the file from the server right after upload because the upload files are not being managed for this project.  
+This service accepts a file upload with a size limit of 1000KB. Once uploaded, it will return the file size in bytes in the JSON response. Note: This service is removing the file from the server right after sending the json response because the upload files are not being managed for this project.  
 
 You can test it at [https://file-metadata-micro-srvc.herokuapp.com](https://file-metadata-micro-srvc.herokuapp.com)
 
@@ -9,11 +9,12 @@ An API Project for FreeCodeCamp.
 
 ## Example Usage
 
-The service creates a POST request to the '/get-file-size/' endpoint which includes the file to upload.
+The service creates a POST request to the '/get-file-size/' endpoint to upload a single file.
 
-```
 
 ## Example Output
+
+The server responds back with the file name and file size in the JSON response.
 
 ```javascript
 { 
